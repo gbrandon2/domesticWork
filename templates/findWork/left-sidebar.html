@@ -1,0 +1,88 @@
+<!DOCTYPE HTML>
+<!--
+	Ion by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+	<head>
+		<title>DomesticWork</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+			{%load static%}
+		<!--[if lte IE 8]><script src="js/html5shiv.js"></script><![endif]-->
+		<script src="/static/js/jquery.min.js"></script>
+		<script src="/static/js/skel.min.js"></script>
+		<script src="/static/js/skel-layers.min.js"></script>
+		<script src="/static/js/init.js"></script>
+		<link rel="stylesheet" href="{% static 'css/skel.css'%}" />
+		<link rel="stylesheet" href="{% static 'css/style.css'%}" />
+		<link rel="stylesheet" href="{% static 'css/style-xLarge.css'%}" />
+		<link rel="stylesheet" href="{% static 'css/estilos.css'%}" />
+	</head>
+	<body id="top">
+
+		<!-- Header -->
+			<header id="header" class="skel-layers-fixed">
+				<h1><a href="#">Ion</a></h1>
+				<nav id="nav">
+					<ul>
+						{% if "member_id" in request.session %}
+			<li><a href="/findWork/home/postWork">Post a Work</a></li>
+				<li><a href="/findWork/home/ShowWorks">ShowWorks</a></li>
+						{%for temp in userName2%}
+						<li><a href="/findWork/home/User">{{temp.Username}} </a></li>
+			{%endfor%}
+						<li><a href="logOut">log out</a></li>
+
+						{%else%}
+						<li><a href="#" id="button" class="button special">Sign Up</a></li>
+						{% endif %}
+					</ul>
+				</nav>
+			</header>
+
+		<!-- Main -->
+		<section id="main" class="wrapper style1">
+					{%for temp in data%}
+				<header class="major">
+					<h1 style="color:#629dd1;
+					font-size: 30px;
+					 text-transform: capitalize;">{{temp.Type}}</h1>
+				</header>
+
+				<div class="container">
+
+
+
+
+					<section>
+						<h1 style="text-transform: capitalize;">Information:</h1>
+						<p></p>
+
+						<p>{{temp.Description}}<br>Schedule:{{temp.StartDate}}-{{temp.Finaldate}}<br>Applicant name:{{temp.FirstName}} {{temp.LastName}} <br>Username:{{temp.Username}}</p>
+					
+					</section>
+
+
+						{%endfor%}
+						</div>
+					</div>
+				</div>
+			</section>
+			<div class="container" id="box4">
+
+			<div class="container" id="box2">
+			<div class="column">
+				{%for temp in User%}
+									<h3>User name: temp.Username</h3>
+									<p>Name: temp.FirstName temp.LastName<br>
+									Phone:temp.Phone<br>
+									<form>
+			</div>
+			</div>
+
+		<!-- Footer -->
+	</body>
+</html>

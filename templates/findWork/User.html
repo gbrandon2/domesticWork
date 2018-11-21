@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<!--
+	Ion by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+	<head>
+		<title></title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		{%load static%}
+		<!--[if lte IE 8]><script src="js/html5shiv.js"></script><![endif]-->
+		<script src="/static/js/jquery.min.js"></script>
+		<script src="/static/js/skel.min.js"></script>
+		<script src="/static/js/skel-layers.min.js"></script>
+		<script src="/static/js/init.js"></script>
+		<link rel="stylesheet" href="{% static 'css/skel.css'%}" />
+		<link rel="stylesheet" href="{% static 'css/style.css'%}" />
+	  <link rel="stylesheet" href="{% static 'css/style-xLarge.css'%}" />
+	  <link rel="stylesheet" href="{% static 'css/estilos.css'%}" />
+	</head>
+	<body id="top">
+
+		<!-- Header -->
+			<header id="header" class="skel-layers-fixed">
+			  <h1>DomesticWork</h1>
+			  <p>&nbsp;</p>
+			  <nav id="nav">
+					<ul>
+						<li><a href="ShowWorks">Works</a></li>
+						<li><a href="postWork">Post Work</a></li>
+						{%for temp in userName2%}
+						<li><a href="#">{{temp.Username}} </a></li>
+			{%endfor%}
+            <li><a href="#" >Contact Us</a></li>
+						<li><a href="logOut" id="button" class="button special">Log out</a></li>
+					</ul>
+				</nav>
+			</header>
+			<h1 style="font-size:50px;padding-left: 40%;
+">My works</h1>
+			<div class="container" id="box">
+
+
+
+				            <div class="container" id="box2">
+				        {%for temp in data%}
+
+				            <div class="column" onclick="redirect({{temp.id}})">
+				                <form action="/findWork/home/delete" method="post">
+				                                {% csrf_token %}
+				                                <h3>Work: {{temp.Type}}</h3>
+				                                <p>Description: {{temp.Description}}<br>
+				                                Start date: {{temp.StartDate}}<br>
+																				Final date: {{temp.Finaldate}}<br>
+				                                Price:{{temp.Price}}<br>
+                                      	Applicant: {{temp.Finaldate}}
+																			</p>
+
+				                                <input value="{{temp.id}}"  name="delete" hidden>
+				                                <input type="submit" id="botonB" value="delete">
+
+
+				                    </form>
+				                        <form action="/findWork/home/update" method="post">
+				                            {% csrf_token %}
+				                            <input value="{{temp.id}}"  name="update" hidden>
+				                            <input type="submit" id="botonB" value="update">
+				                        </form>
+				        </div>
+								{%endfor%}
+
+				        </div>
+
+								<script>
+								function redirect(param)
+								{
+
+								window.location.replace("User/mywork/"+param);
+								}
+								</script>
+
+			</div>
+  </body>
+  </html>

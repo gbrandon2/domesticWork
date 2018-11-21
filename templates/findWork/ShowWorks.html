@@ -1,0 +1,102 @@
+<!DOCTYPE HTML>
+<!--
+	Ion by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+<head>
+	<title></title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	{%load static%}
+	<!--[if lte IE 8]><script src="js/html5shiv.js"></script><![endif]-->
+	<script src="/static/js/jquery.min.js"></script>
+	<script src="/static/js/skel.min.js"></script>
+	<script src="/static/js/skel-layers.min.js"></script>
+	<script src="/static/js/init.js"></script>
+	<link rel="stylesheet" href="{% static 'css/skel.css'%}" />
+	<link rel="stylesheet" href="{% static 'css/style-xLarge.css'%}" />
+	<link rel="stylesheet" href="{% static 'css/estilos.css'%}" />
+		<link rel="stylesheet" href="{% static 'css/style.css'%}" />
+</head>
+<header id="header" class="skel-layers-fixed">
+	<h1>DomesticWork</h1>
+	<p>&nbsp;</p>
+	<nav id="nav">
+		<ul>
+<li><a href="/findWork/home/postWork">Works</a></li>
+			{% if "member_id" in request.session %}
+
+			{%for temp in userName2%}
+			<li><a href="User">{{temp.Username}} </a></li>
+{%endfor%}
+			<li><a href="logOut"  id="button" class="button special">log out</a></li>
+
+			{%else%}
+			<li><a href="#" id="button" class="button special">Sign Up</a></li>
+			{% endif %}
+
+		</ul>
+	</nav>
+</header>
+	<body>
+
+<form action="#" method="Post">
+<div class="container2" id="querys" >
+	{% csrf_token %}
+<input name="query" id="textoB" type="text " placeholder="Look for jobs available" required>
+<input type="submit" id="botonB" value="Search">
+
+</div>
+</form>
+	<div class="container" id="box">
+	<div class="row" id="funcionaaa">
+
+		<form action="#" style="padding: 30px 30px;" method="GET">
+
+    <div>
+			<label for="name" style="align:center;">Filters</label>
+        <label for="name">type:</label>
+				<select name="filtro" style="width:180px;">
+					<option value="filter">Select a type ▼</option>
+					{%for temp in ejemplo%}
+
+				<option value={{temp.Type}}>{{temp.Type}}
+				</option>
+					{%endfor%}
+
+</select>
+    </div>
+<input type="submit" id="botonB2" value="aply">
+</form>
+
+	</div>
+	<div class="container" id="box2">
+		{%if data is 0%}
+		<h4 style="padding-left: 40px;">There is no work that matches with the description</h4>
+		{%else%}
+		{%for temp in data%}
+
+			<div class="column" onclick="redirect({{temp.id}})">
+								<h3>Work: {{temp.Type}}</h3>
+								<p>Addres: {{temp.Address}}<br>
+								Start date: {{temp.StartDate}}<br>
+								Price:{{temp.Price}}</p>
+		</div>
+		{%endfor%}
+
+		{%endif%}
+</div>
+<script>
+function redirect(param)
+{
+
+window.location.replace(param);
+}
+</script>
+
+	</div>
+  </body>
+  </html>

@@ -1,0 +1,49 @@
+--------------------------------
+<!DOCTYPE HTML>
+<!--
+    Ion by TEMPLATED
+    templated.co @templatedco
+    Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        {%load static%}
+        <!--[if lte IE 8]><script src="js/html5shiv.js"></script><![endif]-->
+        <script src="/static/js/jquery.min.js"></script>
+        <script src="/static/js/skel.min.js"></script>
+        <script src="/static/js/skel-layers.min.js"></script>
+        <script src="/static/js/init.js"></script>
+        <link rel="stylesheet" href="{% static 'css/skel.css'%}" />
+        <link rel="stylesheet" href="{% static 'css/style.css'%}" />
+      <link rel="stylesheet" href="{% static 'css/style-xLarge.css'%}" />
+      <link rel="stylesheet" href="{% static 'css/estilos.css'%}" />
+    </head>
+
+  <div class="container" id="box">
+  <div class="container" id="box2">
+  {%for temp in work%}
+
+  <div class="column">
+    <form action="/findWork/home/updateWork" method="post">
+            {% csrf_token %}
+            <input type="text" name="type" value="{{temp.Type}}">
+            <input type="text" name="description" value="{{temp.Description}}">
+            <input type="text" name="startDate" value="{{temp.StartDate}}">
+            <input type="text" name="price" value="{{temp.Price}}">
+            <input value="{{temp.id}}"  name="update" hidden>
+            <input type="submit" id="botonB" value="update">
+
+
+      </form>
+  </div>
+  </div>
+  {%endfor%}
+
+
+
+
+</html>

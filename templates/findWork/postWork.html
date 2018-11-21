@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<!--
+	DomesticWork by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+	<head>
+		<title>DomesticWork</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<!--[if lte IE 8]><script src="js/html5shiv.js"></script><![endif]-->
+		{%load static%}
+		<!--[if lte IE 8]><script src="js/html5shiv.js"></script><![endif]-->
+		<script src="/static/js/jquery.min.js"></script>
+		<script src="/static/js/skel.min.js"></script>
+		<script src="/static/js/skel-layers.min.js"></script>
+		<script src="/static/js/init.js"></script>
+		<link rel="stylesheet" href="{% static 'css/skel.css'%}" />
+		<link rel="stylesheet" href="{% static 'css/style.css'%}" />
+		<link rel="stylesheet" href="{% static 'css/style-xLarge.css'%}" />
+	</head>
+	<body id="top">
+
+		<!-- Header -->
+			<header id="header" class="skel-layers-fixed">
+				<h1><a href="#">DomesticWork</a></h1>
+				<nav id="nav">
+					<ul>
+
+<li><a href="/findWork/home/ShowWorks">Works</a></li>
+						{% if "member_id" in request.session %}
+
+						{%for temp in userName2%}
+						<li><a href="/findWork/home/User">{{temp.Username}} </a></li>
+			{%endfor%}
+						<li><a href="logOut" id="button" class="button special">log out</a></li>
+
+						{%else%}
+						<li><a href="#" id="button" class="button special">Sign Up</a></li>
+						{% endif %}
+					</ul>
+				</nav>
+			</header>
+
+		<!-- Main -->
+			<section id="main" class="wrapper style1">
+				<header class="major">
+				  <h2>Add the work</h2>
+					<form id="formulario2" method="post" action="#">
+						{% csrf_token %}
+					<input type="text" name="address" placeholder="Address">
+		     	<input type="text" name="work" placeholder="Work">
+			    <input type="text" name="description" placeholder="Description">
+					<input type="text" name="startdate" placeholder="Start date(YYYY-MM-DD)">
+					<input type="text" name="finaldate" placeholder="Final date(YYYY-MM-DD)">
+          <input type="text" name="price" placeholder="Price">
+					<input type="submit" value="Post" id="postWork">
+				</form>
+
+
+</header>
+</section>
+
+		<!-- Footer -->
+
+		</form>
+	</body>
+</html>
